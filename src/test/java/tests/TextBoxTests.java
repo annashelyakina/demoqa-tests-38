@@ -22,7 +22,7 @@ public class TextBoxTests {
 
     @Test
     void fillFormTest() {
-        open("https://demoqa.com/text-box");
+        open("/text-box");
         $("#userName").setValue("Anna");
         $("#userEmail").setValue("anna@shel.com");
         $("#currentAddress").setValue("Street 23");
