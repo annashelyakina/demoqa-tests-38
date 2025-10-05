@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class PracticeFormTest {
@@ -15,7 +17,7 @@ public class PracticeFormTest {
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
-        Configuration.holdBrowserOpen =true;
+//        Configuration.holdBrowserOpen =true;
     }
 
     @Test
@@ -37,8 +39,22 @@ public class PracticeFormTest {
         $("#currentAddress").setValue("Street 123");
         $("#react-select-3-input").setValue("NCR").pressEnter();
         $("#react-select-4-input").setValue("Delhi").pressEnter();
-
         $x("//button[@id='submit']").click();
+
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+
+        $(byText("Anna Shelyakina"));
+        $(byText("anna@shel.com"));
+        $(byText("Female"));
+        $(byText("7878787878"));
+        $(byText("24 April,1985"));
+        $(byText("Hindi"));
+        $(byText("Reading"));
+        $(byText("pic1.jpg"));
+        $(byText("Street 123"));
+        $(byText("NCR Delhi"));
+
+        $("#closeLargeModal").click();
     }
 
 
