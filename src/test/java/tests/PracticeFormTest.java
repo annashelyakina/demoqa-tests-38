@@ -22,7 +22,6 @@ public class PracticeFormTest {
 
     @Test
     void fillFormTest() {
-        File fileToUpload = new File("C:/tmp/pic1.jpg");
         open("/automation-practice-form");
         $("#firstName").setValue("Anna");
         $("#lastName").setValue("Shelyakina");
@@ -35,7 +34,7 @@ public class PracticeFormTest {
         $(".react-datepicker__day--024").click();
         $("#subjectsInput").setValue("Hindi").pressEnter();
         $x("//label[@for='hobbies-checkbox-2']").click();
-        $("#uploadPicture").uploadFile(fileToUpload);
+        $("#uploadPicture").uploadFromClasspath("pic1.jpg");
         $("#currentAddress").setValue("Street 123");
         $("#react-select-3-input").setValue("NCR").pressEnter();
         $("#react-select-4-input").setValue("Delhi").pressEnter();
