@@ -4,8 +4,6 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -34,7 +32,7 @@ public class PracticeFormTest {
         $(".react-datepicker__day--024").click();
         $("#subjectsInput").setValue("Hindi").pressEnter();
         $x("//label[@for='hobbies-checkbox-2']").click();
-        $("#uploadPicture").uploadFromClasspath("pic1.jpg");
+        $("#uploadPicture").uploadFromClasspath("img/pic1.jpg");
         $("#currentAddress").setValue("Street 123");
         $("#react-select-3-input").setValue("NCR").pressEnter();
         $("#react-select-4-input").setValue("Delhi").pressEnter();
@@ -49,7 +47,7 @@ public class PracticeFormTest {
         $(byText("24 April,1985"));
         $(byText("Hindi"));
         $(byText("Reading"));
-        $(byText("pic1.jpg"));
+        $(byText("img/pic1.jpg"));
         $(byText("Street 123"));
         $(byText("NCR Delhi"));
 
