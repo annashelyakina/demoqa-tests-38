@@ -12,6 +12,7 @@ TextBoxPage textBoxPage = new TextBoxPage();
     @Test
     void fillFormTest() {
         textBoxPage.openPage()
+                .checkTitle()
                 .setUserName("Anna")
                 .setEmail("anna@shel.com")
                 .setCurrentAddress("Street 23")

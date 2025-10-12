@@ -11,6 +11,8 @@ public class RegistrationWithPageObjectsTests extends TestBase {
     void successfulRegistrationTest() {
 
         registrationPage.openPage()
+            .checkTitle()
+            .hideBanners()
             .setFirstName("Anna")
             .setLastName("Shelyakina")
             .setEmail("anna@shel.com")

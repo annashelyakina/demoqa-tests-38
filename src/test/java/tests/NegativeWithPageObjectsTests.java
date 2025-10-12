@@ -14,6 +14,8 @@ public class NegativeWithPageObjectsTests extends TestBase {
     void negativeTest() {
 
         registrationPage.openPage()
+            .checkTitle()
+            .hideBanners()
             .setFirstName("Anna")
             .setLastName("Shelyakina")
             .setGender("Female")

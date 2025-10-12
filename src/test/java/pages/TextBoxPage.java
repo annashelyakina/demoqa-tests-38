@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class TextBoxPage {
 
-    private SelenideElement
+    private final SelenideElement
 
             userNameInput= $("#userName"),
 
@@ -31,7 +31,11 @@ public class TextBoxPage {
 
         return this;
     }
+    public TextBoxPage checkTitle(){
+        $(".text-center").shouldHave(text("Text Box"));
 
+        return this;
+    }
     public TextBoxPage setUserName(String value){
         userNameInput.setValue(value);
 
