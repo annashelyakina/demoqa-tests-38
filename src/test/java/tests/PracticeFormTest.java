@@ -58,5 +58,3 @@ public class PracticeFormTest {
         $("#closeLargeModal").click();
     }
 }
-
-//:not(.react-datepicker__day--outside-month)
