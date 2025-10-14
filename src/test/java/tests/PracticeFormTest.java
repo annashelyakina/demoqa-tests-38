@@ -2,6 +2,7 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.appear;
@@ -11,8 +12,8 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class PracticeFormTest {
 
-    @BeforeAll
-    static void setupEnvironment(){
+    @BeforeEach
+    public void setupEnvironment(){
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
@@ -41,20 +42,21 @@ public class PracticeFormTest {
         $("#submit").click();
 
         $(".modal-dialog").should(appear);
-        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-        $(".table-responsive").shouldHave(text("Anna Shelyakina"),
-                text("anna@shel.com"),
-                text("Female"),
-                text("7878787878"),
-                text("24 March,2008"),
-                text("Hindi"),
-                text("Reading"),
-                text("pic1.jpg"),
-                text("Street 123"),
-                text("NCR Delhi"));
 
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+        $(".table-responsive").shouldHave(text("Anna Shelyakina"));
+        $(".table-responsive").shouldHave(text("anna@shel.com"));
+        $(".table-responsive").shouldHave(text("Female"));
+        $(".table-responsive").shouldHave(text("Female"));
+        $(".table-responsive").shouldHave(text("7878787878"));
+        $(".table-responsive").shouldHave(text("24 March,2008"));
+        $(".table-responsive").shouldHave(text("Hindi"));
+        $(".table-responsive").shouldHave(text("Reading"));
+        $(".table-responsive").shouldHave(text("pic1.jpg"));
+        $(".table-responsive").shouldHave(text("Street 123"));
+        $(".table-responsive").shouldHave(text("NCR Delhi"));
         $("#closeLargeModal").click();
     }
-
-
 }
+
+//:not(.react-datepicker__day--outside-month)
