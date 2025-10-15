@@ -1,10 +1,7 @@
 package tests;
 
-import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
-
-import java.util.Locale;
 
 public class RegistrationWithFakerTests extends TestBase {
 
@@ -13,15 +10,12 @@ public class RegistrationWithFakerTests extends TestBase {
     @Test
     void successfulRegistrationTest() {
 
-        Faker faker = new Faker(new Locale("en-GB"));
-
-        String firstName = faker.name().firstName();
-        String lastName = faker.name().lastName();
-        String userEmail = faker.internet().emailAddress();
-        String userGender = faker.demographic().sex();
-        String userPhoneNumber = faker.phoneNumber().subscriberNumber(10);
-        String userAddress = faker.address().streetAddress();
-
+        String firstName = TestData.getFirstNameFaker();
+        String lastName = TestData.getLastNameFaker();
+        String userEmail = TestData.getUserEmailFaker();
+        String userGender = TestData.getUserGenderFaker();
+        String userNumber = TestData.getUserPhoneNumbFaker();
+        String userAddress = TestData.getUserAddressFaker();
 
         registrationPage.openPage()
             .checkTitle()
@@ -30,7 +24,7 @@ public class RegistrationWithFakerTests extends TestBase {
             .setLastName(lastName)
             .setEmail(userEmail)
             .setGender(userGender)
-            .setUserNumber(userPhoneNumber)
+            .setUserNumber(userNumber)
             .setDateOfBirth("30", "July", "2008")
             .setSubjects("Math")
             .setHobbiesWrapper("Sports")
@@ -43,7 +37,7 @@ public class RegistrationWithFakerTests extends TestBase {
             .checkKeyValue("Student Name", firstName + " " + lastName)
             .checkKeyValue("Student Email", userEmail)
             .checkKeyValue("Gender", userGender)
-            .checkKeyValue("Mobile", userPhoneNumber)
+            .checkKeyValue("Mobile", userNumber)
             .checkKeyValue("Date of Birth", "30 July,2008")
             .checkKeyValue("Subjects", "Math")
             .checkKeyValue("Hobbies", "Sports")
