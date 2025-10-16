@@ -12,18 +12,20 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class PracticeFormTest {
 
-    @BeforeEach
-    public void setupEnvironment(){
+    @BeforeAll
+    public static void setupEnvironment(){
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
-        open("/automation-practice-form");
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
+
     }
 
     @Test
     void fillFormTest() {
+        open("/automation-practice-form");
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
+
         $("#firstName").setValue("Anna");
         $("#lastName").setValue("Shelyakina");
         $("#userEmail").setValue("anna@shel.com");
