@@ -1,9 +1,13 @@
 package guru.qa;
 
 import com.codeborne.selenide.Configuration;
+import guru.qa.data.Currency;
+import guru.qa.data.Spending;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.EnumSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -56,6 +60,44 @@ public class NifflerWebTestsWithAnnotations {
         $("#amount").setValue(amount);
         $("ul").$(byText(spending)).click();
         $("#save").click();
+        $("[data-testid=PersonIcon]").click();
+        $("[role=menu]").$(byText("Sign out")).click();
+        $("[role=dialog]").$(byText("Log out")).click();
+    }
+
+    @ValueSource(strings = {
+            "Milk",
+            "Bread"
+    })
+    @ParameterizedTest(name = "Поиск  категории расходов {0} среди уже существующих")
+    @Tag("BLOCKER")
+    void searchExistingSpendingWithAmount(String spending) {
+
+        $("#username").setValue("Demo1");
+        $("#password").setValue("demo1");
+        $("#login-button").click();
+        $("header").$(byText("New spending")).click();
+        $("#amount").setValue("55");
+        $("ul").$(byText(spending)).click();
+        $("#save").click();
+        $("[placeholder=Search]").setValue(spending).pressEnter();
+        $("tbody").$("tr").shouldHave(text(spending)).shouldHave(text("55"));
+        $("header").$(byText("New spending")).click();
+        $("[data-testid=PersonIcon]").click();
+        $("[role=menu]").$(byText("Sign out")).click();
+        $("[role=dialog]").$(byText("Log out")).click();
+    }
+
+    @EnumSource(Currency.class)
+    @ParameterizedTest(name = "Выбор валюты {0} в списке валют ")
+    @Tag("BLOCKER")
+    void selectCurrencyInList(Currency currency) {
+
+        $("#username").setValue("Demo1");
+        $("#password").setValue("demo1");
+        $("#login-button").click();
+        $("#currency").click();
+        $("[role=listbox]").$(byText(currency.name())).click();
         $("[data-testid=PersonIcon]").click();
         $("[role=menu]").$(byText("Sign out")).click();
         $("[role=dialog]").$(byText("Log out")).click();
