@@ -33,8 +33,8 @@ public class WebSteps {
         $("#issues-tab").click();
     }
 
-    @Step("Проверяем наличие Issue c номером {issue}")
-    public void shouldSeeIssueWithNumber(int issue){
-        $(withText("#"+issue)).should(Condition.exist);
+    @Step("Проверяем наличие Issue c названием {issue}")
+    public void shouldSeeIssueWithTitle(String issue){
+        $(withText(issue)).should(Condition.exist);
     }
 }

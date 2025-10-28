@@ -25,6 +25,6 @@ public class SelenideTest {
 
         $(linkText("annashelyakina/demoqa-tests-38")).click();
         $("#issues-tab").click();
-        $(withText("#1")).should(Condition.exist);
+        $(withText("This is my test issue")).should(Condition.exist);
     }
 }
