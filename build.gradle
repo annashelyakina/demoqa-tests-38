@@ -60,6 +60,12 @@ tasks.register('simple', Test) {
     }
 }
 
+tasks.register('demoqa', Test) {
+    useJUnitPlatform {
+        includeTags("demoqa")
+    }
+}
+
 tasks.register('SMOKE', Test) {
     testLogging {
         events "passed", "skipped", "failed", "standardOut", "standardError"
