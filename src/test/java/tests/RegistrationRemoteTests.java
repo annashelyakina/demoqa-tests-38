@@ -23,7 +23,7 @@ public class RegistrationRemoteTests {
 
     @Test
     @Tag("demoqa")
-    void successfulRegistrationTest() {
+    void successfulRegistrationRemoteTest() {
 
         step ("Open form", () -> {
             open("/automation-practice-form");
@@ -51,10 +51,13 @@ public class RegistrationRemoteTests {
             $("#stateCity-wrapper").$(byText("Delhi")).click();
             $("#submit").click();
         });
-
-        $(".modal-dialog").should(appear);
-        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-        $(".table-responsive").shouldHave(text("Alex"), text("Egorov"),
-                text("alex@egorov.com"), text("1234567890"));
+        step ("Open modal dialog with values", () -> {
+                    $(".modal-dialog").should(appear);
+                });
+        step ("Check values in modal dialog", () -> {
+            $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+            $(".table-responsive").shouldHave(text("Alex"), text("Egorov"),
+                    text("alex@egorov.com"), text("1234567890"));
+        });
     }
 }
