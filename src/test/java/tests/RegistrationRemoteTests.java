@@ -1,6 +1,8 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -19,6 +21,7 @@ public class RegistrationRemoteTests {
         Configuration.browserSize = "1920x1080";
         Configuration.timeout = 10000;
         Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 
     @Test
@@ -51,10 +54,10 @@ public class RegistrationRemoteTests {
             $("#stateCity-wrapper").$(byText("Delhi")).click();
             $("#submit").click();
         });
-        step ("Open modal dialog with values", () -> {
+        step ("Open modal dialog with results", () -> {
                     $(".modal-dialog").should(appear);
                 });
-        step ("Check values in modal dialog", () -> {
+        step ("Check results in modal dialog", () -> {
             $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
             $(".table-responsive").shouldHave(text("Alex"), text("Egorov"),
                     text("alex@egorov.com"), text("1234567890"));
