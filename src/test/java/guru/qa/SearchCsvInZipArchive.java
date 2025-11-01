@@ -20,6 +20,7 @@ public class SearchCsvInZipArchive {
         ))
         {
             ZipEntry entry;
+            boolean found = false;
 
             while ((entry = zip.getNextEntry()) != null) {
 
@@ -31,10 +32,12 @@ public class SearchCsvInZipArchive {
                    Assertions.assertArrayEquals(
                           new String[]{"150000", "2016-01-01", "Chris Riley", "trailhead9.ub20k5i9t8ou@example.com"},
                           data.get(1));
-
+                   found = true;
                 }
             }
-
+            if(!found) {
+                System.out.println("Файл не найден");
+            }
         } catch(Exception e) {
             System.out.println("Обработано исключение: " + e.getMessage());
         }

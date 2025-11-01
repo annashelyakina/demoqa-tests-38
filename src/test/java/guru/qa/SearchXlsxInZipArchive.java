@@ -17,6 +17,7 @@ public class SearchXlsxInZipArchive {
                 cl.getResourceAsStream("files.zip")
         )) {
             ZipEntry entry;
+            boolean found = false;
 
             while ((entry = zip.getNextEntry()) != null) {
 
@@ -25,7 +26,11 @@ public class SearchXlsxInZipArchive {
                     XLS xls = new XLS(zip);
                     String actualValue = xls.excel.getSheetAt(0).getRow(7).getCell(1).getStringCellValue();
                     Assertions.assertTrue(actualValue.contains("Корпоративные экономические информационные системы"));
+                    found = true;
                 }
+            }
+            if(!found) {
+                System.out.println("Файл не найден");
             }
         } catch(Exception e) {
             System.out.println("Обработано исключение: " + e.getMessage());

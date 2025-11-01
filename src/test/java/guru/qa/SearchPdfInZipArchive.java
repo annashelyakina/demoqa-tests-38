@@ -17,15 +17,19 @@ public class SearchPdfInZipArchive {
                 cl.getResourceAsStream("files.zip")
         )) {
             ZipEntry entry;
+            boolean found = false;
 
             while ((entry = zip.getNextEntry()) != null) {
-                System.out.println(entry.getName());
 
                 if (entry.getName().equals("description.pdf")) {
                     System.out.println("check_pdf");
                     PDF pdf = new PDF(zip);
                     Assertions.assertEquals("Admin", pdf.author);
+                    found = true;
                 }
+            }
+            if(!found) {
+                System.out.println("Файл не найден");
             }
         } catch(Exception e) {
             System.out.println("Обработано исключение: " + e.getMessage());
