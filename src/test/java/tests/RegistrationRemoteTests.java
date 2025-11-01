@@ -46,7 +46,7 @@ public class RegistrationRemoteTests {
     }
 
     @Test
-    @Tag("demoqa")
+ //   @Tag("demoqa")
     void successfulRegistrationRemoteTest() {
 
         step ("Open form", () -> {
