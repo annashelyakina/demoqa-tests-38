@@ -68,6 +68,12 @@ tasks.register('demoqa', Test) {
     }
 }
 
+tasks.register('demoqa_property', Test) {
+    useJUnitPlatform {
+        includeTags("demoqa_property")
+    }
+}
+
 tasks.register('remote', Test) {
     useJUnitPlatform {
         includeTags("remote")
