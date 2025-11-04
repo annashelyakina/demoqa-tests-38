@@ -22,14 +22,12 @@ public class RegistrationRemotePropertiesWithFakerTests {
 
     @BeforeAll
     static void beforeAll() {
+
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.timeout = 10000;
-
-        String browser = System.getProperty("browser", "mozilla");
-        String browserVersion = System.getProperty("browser_version", "141");
-        String browserSize = System.getProperty("browser_size", "1920x1080");
-        String remote = System.getProperty("browser_remote", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
-
+//        Configuration.browserSize = "1920x1080";
+//        Configuration.timeout = 10000;
+//        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.of(
@@ -54,6 +52,13 @@ public class RegistrationRemotePropertiesWithFakerTests {
     @Test
     @Tag("demoqa_property")
         void successfulRegistrationTest() {
+
+        String browser = System.getProperty("browser", "mozilla");
+        String browserVersion = System.getProperty("browser_version", "141");
+        String browserSize = System.getProperty("browser_size", "1920x1080");
+        String remote = System.getProperty("browser_remote", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
+
+
 
 
         String firstName = TestData.getFirstNameFaker();
