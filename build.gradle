@@ -44,6 +44,8 @@ dependencies {
 }
 
 tasks.withType(Test) {
+    systemProperties(System.getProperties())
+
     useJUnitPlatform()
 
     testLogging {
@@ -63,6 +65,18 @@ tasks.register('simple', Test) {
 tasks.register('demoqa', Test) {
     useJUnitPlatform {
         includeTags("demoqa")
+    }
+}
+
+tasks.register('remote', Test) {
+    useJUnitPlatform {
+        includeTags("remote")
+    }
+}
+
+tasks.register('property', Test) {
+    useJUnitPlatform {
+        includeTags("property")
     }
 }
 
