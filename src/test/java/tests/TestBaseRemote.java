@@ -13,12 +13,12 @@ public class TestBaseRemote {
     @BeforeAll
     static void beforeAll() {
 
-//        Configuration.pageLoadStrategy = "eager";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browser = System.getProperty("browser", "chrome");
         Configuration.browserVersion = System.getProperty("browserVersion", "127.0");
         Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
         Configuration.timeout = 10000;
+        Configuration.remote = ("https://user1:1234@selenoid.autotests.cloud/wd/hub");
 
         // Настраиваем capabilities для Selenoid
         DesiredCapabilities capabilities = new DesiredCapabilities();
